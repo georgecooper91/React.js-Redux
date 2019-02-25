@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const films = require('./routes/api/films');
+const path = require('path');
 
 const app = express();
 
@@ -19,6 +20,18 @@ db.once('open', function(){
 //Routes
 app.use('/api/films', films);
 
-app.listen('3001', () => {
-    console.log('Server started');
-})
+//serve static assets if i production
+if (process.env_NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
+
+// app.listen('3001', () => {
+//     console.log('Server started');
+// })
+
+app.listen(process.env.PORT || 5000);
