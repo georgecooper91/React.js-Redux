@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 //connect to Db
 // mongoose.connect('mongodb://localhost/films', { useNewUrlParser: true });
-mongoose.connect('mongodb+srv://george123:<PASSWORD>@films-hqjvb.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://george123:george123@films-hqjvb.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function(){
