@@ -22,7 +22,7 @@ db.once('open', function(){
 app.use('/api/films', films);
 
 //serve static assets if i production
-if (process.env_NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 
     app.get('*', (req, res) => {
